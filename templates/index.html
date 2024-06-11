@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to BestFIT</h1>
+        <p class="lead">Your personal guide for workouts and meal planning.</p>
+        <hr class="my-4">
+        <p>Start by exploring our workouts and meal plans.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('workouts') }}" role="button">Workouts</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('meal_plans') }}" role="button">Meal Plans</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('suggestions') }}" role="button">Food Suggestions</a>
+    </div>
+{% endblock %}

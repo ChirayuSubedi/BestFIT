@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Welcome, {{ current_user.username }}!</p>
+
+    <h2>Your Workouts</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Duration (minutes)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout.name }}</td>
+                    <td>{{ workout.description }}</td>
+                    <td>{{ workout.duration }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <canvas id="workoutChart"></canvas>
+
+    <h2>Your Meal Plans</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Calories</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meal_plan in meal_plans %}
+                <tr>
+                    <td>{{ meal_plan.name }}</td>
+                    <td>{{ meal_plan.description }}</td>
+                    <td>{{ meal_plan.calories }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <canvas id="mealPlanChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Workout Chart
+        const workoutCtx = document.getElementById('workoutChart').getContext('2d');
+        const workoutChart = new Chart(workoutCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ workout_names | tojson }},
+                datasets: [{
+                    label: 'Workout Duration (minutes)',
+                    data: {{ workout_durations | tojson }},
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Meal Plan Chart
+        const mealPlanCtx = document.getElementById('mealPlanChart').getContext('2d');
+        const mealPlanChart = new Chart(mealPlanCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ meal_plan_names | tojson }},
+                datasets: [{
+                    label: 'Calories',
+                    data: {{ meal_plan_calories | tojson }},
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

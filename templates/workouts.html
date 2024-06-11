@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Workouts</h1>
+    <form action="{{ url_for('workouts') }}" method="POST" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search Workouts">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <form action="{{ url_for('add_workout') }}" method="POST" class="mb-4">
+        <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Workout Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="description" class="form-control" placeholder="Description" required>
+        </div>
+        <div class="form-group">
+            <input type="number" name="duration" class="form-control" placeholder="Duration (minutes)" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Workout</button>
+    </form>
+    <div class="row">
+        {% for workout in workouts %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ workout.name }}</h5>
+                        <p class="card-text">{{ workout.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ workout.duration }} mins</small></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

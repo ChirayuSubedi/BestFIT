@@ -1,0 +1,29 @@
+body {
+    padding-top: 56px;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.form-group input {
+    border-radius: 5px;
+}
+
+.btn-primary, .btn-secondary {
+    border-radius: 5px;
+}
+
+.table {
+    margin-top: 20px;
+}

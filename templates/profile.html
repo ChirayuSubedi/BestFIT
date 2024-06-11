@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Profile</h1>
+    <form action="{{ url_for('profile') }}" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" value="{{ current_user.username }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">New Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Leave blank to keep current password">
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" name="age" class="form-control" value="{{ current_user.age }}" required>
+        </div>
+        <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input type="text" name="height" class="form-control" value="{{ current_user.height }}" required>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input type="text" name="weight" class="form-control" value="{{ current_user.weight }}" required>
+        </div>
+        <div class="form-group">
+            <label for="goal">Fitness Goal</label>
+            <input type="text" name="goal" class="form-control" value="{{ current_user.goal }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+{% endblock %}
